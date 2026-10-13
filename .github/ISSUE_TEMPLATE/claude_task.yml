@@ -1,0 +1,40 @@
+name: Claude task
+description: Claude に夜間自動で実装してもらうタスク（細かいバグ修正・バージョンアップなど）。起票後、内容を確認してから `claude:ready` ラベルを付けると着手されます。
+title: ""
+body:
+  - type: markdown
+    attributes:
+      value: |
+        設計判断が必要なタスクは対象外です。設計考慮点がある場合は、判断内容まで本文に書いてください。
+        起票しただけでは着手されません。内容を確認したうえで `claude:ready` ラベルを付けてください。
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: なぜこの変更が必要か
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: 完了条件。Claude が「満たした」と判断できる粒度で書く
+      placeholder: |
+        - 〇〇のとき、△△が返る
+        - 既存のテストが全て通る
+    validations:
+      required: true
+  - type: textarea
+    id: design-considerations
+    attributes:
+      label: 設計考慮点
+      description: 実装方針・設計上の決定事項。なければ「なし」と書く
+    validations:
+      required: true
+  - type: textarea
+    id: shared-information
+    attributes:
+      label: Shared Information
+      description: 参考情報（関連 Issue・PR、ログ、スクリーンショットなど）
+    validations:
+      required: false
